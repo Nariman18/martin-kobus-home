@@ -14,10 +14,19 @@ const page = {
         type: "slug",
         options: { source: "title", maxLength: 96 }
       },
+
+      {
+        name: "mainImage",
+        title: "Main Image",
+        type: "image",
+        options: { hotspot: true },
+       
+      },
+
       {
         //Here is the input that i created for Images array inside my Sanity studio
-        name: "image",
-        title: "Image",
+        name: "images",
+        title: "Images",
         type: "array",
         of: [{ type: 'image' }],
         options: { hotspot: true },

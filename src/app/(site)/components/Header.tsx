@@ -3,10 +3,47 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
-
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Link from "next/link";
 import { getPages } from "../../../../sanity/sanity-utils";
 import { Page } from "../../../../types/Page";
+
+const MobileMenuItems: React.FC<{ active: boolean }> = ({ active }) => {
+  const [activeMobile, setActiveMobile] = useState(false);
+
+  const showMenu = () => {
+    setActiveMobile(!activeMobile);
+  };
+
+  return (
+    <div
+      className={`fixed h-screen inset-0 z-[9999] flex p-10 bg-white/40 transition-all duration-500 ease-in-out ${
+        active
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <CloseIcon
+        onClick={showMenu}
+        className="cursor-pointer absolute left-[365px] top-[10px] text-4xl text-black"
+      />
+      <ul className="flex flex-col items-center uppercase">
+        <li className="hover:text-orange-500 hover:transition duration-150 ease-in-out uppercase font-thin text-lg text-black">
+          <Link href="/">Главная</Link>
+        </li>
+        <li className="hover:text-orange-500 hover:transition duration-150 ease-in-out font-thin text-lg text-black">
+          <Link href="/">Квесты</Link>
+        </li>
+        <li className="hover:text-orange-500 hover:transition duration-150 ease-in-out font-thin text-lg text-black">
+          <Link href="/">О Нас</Link>
+        </li>
+        <li className="hover:text-orange-500 hover:transition duration-150 ease-in-out font-thin text-lg text-black">
+          <Link href="/">Контакты</Link>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
 function Header() {
   const [showPanel, setShowPanel] = useState(false);
@@ -15,13 +52,21 @@ function Header() {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showCloseIcon, setShowCloseIcon] = useState(true);
-  const [pages, setPages] = useState<Page[]>([]); //Here I added the useState hook to create an empty array with Page's types.
-  //You can find my types for the Pages inside my "types" folder.
+  const [pages, setPages] = useState<Page[]>([]);
+  const [active, setActive] = useState(false);
+
+  const showMenu = () => {
+    setActive(!active);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       const pagesData = await getPages();
-      setPages(pagesData);
+      const sortedPagesData = pagesData.sort(
+        (b, a) =>
+          new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
+      );
+      setPages(sortedPagesData);
     };
 
     fetchData();
@@ -88,41 +133,41 @@ function Header() {
 
   return (
     <div
-      className={`fixed top-0 left-0 z-[9999] flex items-center justify-between w-full transition-all duration-200`}
+      className={`fixed top-0 left-0 z-[9999] flex flex-row-reverse backdrop-blur h-[100px] bg-transparent-white items-center justify-start w-full transition-all duration-200`}
       style={{
         transform: showHeader ? "translateY(0)" : "translateY(-100%)",
       }}
     >
-      <ul className="flex space-x-11 p-10 text-black uppercase text-sm mr-[200px] tracking-wide font-thin">
+      <div className="absolute right-6 2xl:hidden xl:hidden lg:hidden scale-150 text-black top-12 hover:text-white hover:transition duration-150 ease-in-out">
+        <MenuOutlinedIcon onClick={showMenu} className="cursor-pointer" />
+      </div>
+      <ul className="hidden lg:flex space-x-8 p-10 text-black uppercase text-[13px] font-[500] tracking-[0.04em] font-openSans">
+        <Link href="/About" className="cursor-pointer link-item">
+          About Us
+        </Link>
         <li
           onClick={() => handleClick("work")}
-          className="cursor-pointer link-item-white"
+          className="cursor-pointer link-item"
         >
           Work
         </li>
-        <li
-          onClick={() => handleClick("studio")}
-          className="cursor-pointer link-item-white"
-        >
-          Studio
-        </li>
-        <button className="cursor-pointer uppercase link-item-white">
-          News & Awards
-        </button>
-        <button className="cursor-pointer uppercase link-item-white">
+        <Link href="/" className="cursor-pointer uppercase link-item">
+          Press
+        </Link>
+        <Link href="/Contact" className="cursor-pointer uppercase link-item">
           Contact
-        </button>
+        </Link>
       </ul>
 
       <AnimatePresence>
         {showPanel && (
           <motion.div
-            className="fixed top-0 left-0 z-[9998] w-[500px] h-screen bg-white"
+            className="fixed top-0 left-0 z-[9998] w-[280px] h-screen bg-white"
             initial="closed"
             exit={{ opacity: 0, x: -200 }}
             animate={showPanel ? "open" : "closed"}
             variants={panelVariants}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
             style={{
               borderRight: "1px solid #D3D3D3",
             }}
@@ -130,36 +175,15 @@ function Header() {
             {activeTab === "work" && (
               <div className="flex flex-row">
                 <div className="">
-                  <ul className="flex space-x-11 p-10 uppercase text-sm tracking-wide font-thin">
-                    <li
-                      onClick={() => handleClick("work")}
-                      className="cursor-pointer underline underline-offset-[5.5px]"
-                    >
-                      Work
-                    </li>
-                    <li
-                      onClick={() => handleClick("studio")}
-                      className="cursor-pointer link-item"
-                    >
-                      Studio
-                    </li>
-                    <button className="cursor-pointer uppercase link-item">
-                      News & Awards
-                    </button>
-                    <button className="cursor-pointer uppercase link-item">
-                      Contact
-                    </button>
-                  </ul>
-
                   {showCloseIcon && (
                     <div
                       onClick={closeAllPanels}
-                      className="absolute top-[36px] left-[453px]"
+                      className="absolute top-[40px] left-[210px]"
                     >
                       <CloseIcon
                         style={{
-                          height: "20px",
-                          width: "20px",
+                          height: "30px",
+                          width: "30px",
                           cursor: "pointer",
                           color: "black",
                         }}
@@ -167,85 +191,14 @@ function Header() {
                     </div>
                   )}
 
-                  <ul className="p-10 mt-5 text-sm font-thin uppercase space-y-2 tracking-wider">
+                  <ul className="p-10 mt-[180px] text-[14px] font-[500] font-openSans uppercase tracking-[0.06em]">
                     <motion.li
-                      onClick={() => handleSubPanelClick("residential")}
-                      className="focus:underline cursor-pointer link-item w-[80px]"
-                      variants={linkVariants}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                    >
-                      Residental
-                    </motion.li>
-                    <motion.li
-                      onClick={() => handleSubPanelClick("hospitality")}
-                      className="cursor-pointer link-item w-[85px]"
-                      variants={linkVariants}
-                      transition={{ duration: 0.5, delay: 0.3 }}
-                    >
-                      Hospitality
-                    </motion.li>
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "studio" && (
-              <div className="flex">
-                <div className="">
-                  <ul className="flex space-x-11 p-10 uppercase text-sm tracking-wide font-thin">
-                    <li
-                      onClick={() => handleClick("work")}
-                      className="cursor-pointer link-item"
-                    >
-                      Work
-                    </li>
-                    <li
-                      onClick={() => handleClick("studio")}
-                      className="cursor-pointer underline underline-offset-[5.5px]"
-                    >
-                      Studio
-                    </li>
-                    <button className="cursor-pointer uppercase link-item">
-                      News & Awards
-                    </button>
-                    <button className="cursor-pointer uppercase link-item">
-                      Contact
-                    </button>
-                  </ul>
-                  <div
-                    onClick={closeAllPanels}
-                    className="absolute top-[37px] left-[450px]"
-                  >
-                    <CloseIcon
-                      style={{
-                        height: "20px",
-                        width: "20px",
-                        cursor: "pointer",
-                        color: "black",
-                      }}
-                    />
-                  </div>
-                  <ul className="flex flex-col p-10 mt-20 text-sm font-thin uppercase space-y-2 tracking-wider">
-                    <motion.li
-                      variants={linkVariants}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                      className="cursor-pointer"
-                    >
-                      About
-                    </motion.li>
-                    <motion.li
-                      variants={linkVariants}
-                      transition={{ duration: 0.5, delay: 0.3 }}
-                      className="cursor-pointer"
-                    >
-                      Leadership
-                    </motion.li>
-                    <motion.li
+                      onClick={() => handleSubPanelClick("selected work")}
+                      className="focus:underline cursor-pointer link-item w-full"
                       variants={linkVariants}
                       transition={{ duration: 0.5, delay: 0.4 }}
-                      className="cursor-pointer"
                     >
-                      Open Positions
+                      Selected Work
                     </motion.li>
                   </ul>
                 </div>
@@ -262,39 +215,40 @@ function Header() {
             exit={{ opacity: 0, x: -200 }}
             animate={showPanel ? "open" : "closed"}
             variants={panelVariants}
-            transition={{ duration: 0.5 }}
-            className="fixed top-0 left-[500px] z-[9997] w-[500px] h-screen bg-white"
+            transition={{ duration: 0.3 }}
+            className="fixed top-0 left-[280px] z-[9997] w-[500px] h-screen bg-white overflow-auto"
           >
-            {subPanel === "residential" && (
-              <div className="flex p-10 text-sm uppercase font-thin tracking-wider mt-[120px]">
-                <div className="flex w-full justify-between">
-                  <ul className="text-black">
-                    <motion.li
-                      variants={linkVariants}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                      className="cursor-pointer flex flex-col space-y-2 w-full"
-                    >
-                      {/* Here I mapped all the Page links inside my 2nd sideBar, so you can find those links when you click the "Residential" link inside my 1st sideBar */}
-                      {pages.map((page) => (
-                        <Link
-                          key={page._id}
-                          href={`/${page.slug}`}
-                          className="link-item"
-                        >
+            {subPanel === "selected work" && (
+              <div className="flex p-10 text-sm uppercase mt-[180px] ">
+                <ul className="text-black">
+                  <motion.li
+                    variants={linkVariants}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="cursor-pointer flex flex-col space-y-2 w-full tracking-[0.04em] font-openSans font-[500]"
+                  >
+                    {/* Here I mapped all the Page links inside my 2nd sideBar, so you can find those links when you click the "Residential" link inside my 1st sideBar */}
+                    {pages.map((page, index) => (
+                      <Link
+                        key={page._id}
+                        href={`/pages/${page.slug}`}
+                        onClick={closeAllPanels}
+                      >
+                        <span className={`link-item link-item-${index}`}>
                           {page.title}
-                        </Link>
-                      ))}
-                    </motion.li>
-                  </ul>
-                </div>
+                        </span>
+                      </Link>
+                    ))}
+                  </motion.li>
+                </ul>
+
                 <div
                   onClick={closeAllPanels}
-                  className="absolute top-[37px] left-[450px]"
+                  className="absolute top-[40px] left-[420px]"
                 >
                   <CloseIcon
                     style={{
-                      height: "20px",
-                      width: "20px",
+                      height: "30px",
+                      width: "30px",
                       cursor: "pointer",
                       color: "black",
                     }}
@@ -306,9 +260,11 @@ function Header() {
         )}
       </AnimatePresence>
 
-      <div className="text-black uppercase tracking-[15px] mr-[700px]">
-        <Link href="/">Martin</Link>
+      <div className="text-[#212121] text-[23px] uppercase tracking-[0.01em] font-openSans font-[500] mr-[245px]">
+        <Link href="/">Martin Kobus Home</Link>
       </div>
+
+      <MobileMenuItems active={active} />
     </div>
   );
 }

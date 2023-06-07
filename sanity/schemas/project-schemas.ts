@@ -16,16 +16,19 @@ const project = {
       },
       {
         name: "image",
-        title: "Image",
+        title: "Main Image",
         type: "image",
         options: { hotspot: true },
-        fields: [
-          {
-            name: "alt",
-            title: "Alt",
-            type: "string"
-          }
-        ]
+       
+      },
+      {
+        //Here is the input that i created for Images array inside my Sanity studio
+        name: "images",
+        title: "Images",
+        type: "array",
+        of: [{ type: 'image' }],
+        options: { hotspot: true },
+        
       },
       {
         name: "url",

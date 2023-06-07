@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: 'jit',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -12,7 +13,27 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+
+      backdropFilter: { 
+        'none': 'none',
+        'blur': 'blur(20px)',
+      },
+
+      backgroundColor: theme => ({
+        'transparent-white': 'rgba(255, 255, 255, 0.01)',
+     })
+
     },
+
+    fontFamily: {
+     openSans: ["Open Sans", "sans-serif"]
+    }
+    
   },
-  plugins: [],
+  variants: {
+    extend: {},
+  },
+  plugins: [
+    require('tailwindcss-filters'),
+  ],
 }

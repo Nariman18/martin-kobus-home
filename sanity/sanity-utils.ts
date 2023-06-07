@@ -39,7 +39,7 @@
                 _createdAt,
                 name,
                 "slug": slug.current,
-                "image": image.asset->url,
+                "images": images[].asset->url,
                 url,
                 content
             }`,
@@ -61,6 +61,7 @@
                 _id,
                 _createdAt,
                 title,
+                "mainImage": mainImage.asset->url,
                 "slug": slug.current,
             }`
         )
@@ -77,12 +78,11 @@
         return client.fetch(
             groq`*[_type == 'page' && slug.current == $slug][0]{
                 _id,
-                _createdAt,
-                "image": images[].asset->url, //I am also querying images array here.
+                _createdAt, 
+                "images": images[].asset->url,
                 title,
                 "slug": slug.current,
                 content,
-                alt
             }`,
             {slug}
         )
