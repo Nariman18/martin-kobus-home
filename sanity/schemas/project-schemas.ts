@@ -1,6 +1,6 @@
 const project = {
     name: "project",
-    title: "Projects",
+    title: "Press",
     type: "document",
     fields: [
       {
@@ -30,17 +30,8 @@ const project = {
         options: { hotspot: true },
         
       },
-      {
-        name: "url",
-        title: "URL",
-        type: "url"
-      },
-      {
-        name: "content",
-        title: "Content",
-        type: "array",
-        of: [{ type: "block" }]
-      }
+     
+     
     ]
   }
   

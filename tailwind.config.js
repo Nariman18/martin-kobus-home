@@ -8,21 +8,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backdropFilter: {
+        'none': 'none',
+        'blur': 'blur(20px)',
+      },
+
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
 
-      backdropFilter: { 
-        'none': 'none',
-        'blur': 'blur(20px)',
-      },
-
       backgroundColor: theme => ({
         'transparent-white': 'rgba(255, 255, 255, 0.01)',
-     })
+     }),
 
+     
     },
 
     fontFamily: {
@@ -31,9 +32,11 @@ module.exports = {
     
   },
   variants: {
-    extend: {},
+    extend: {
+      backdropFilter: ['responsive'],
+    },
   },
   plugins: [
-    require('tailwindcss-filters'),
+    require('@tailwindcss/postcss7-compat')
   ],
 }

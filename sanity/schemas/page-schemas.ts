@@ -1,6 +1,6 @@
 const page = {
     name: "page",
-    title: "Pages",
+    title: "Work",
     type: "document",
     fields: [
       {
@@ -15,13 +15,6 @@ const page = {
         options: { source: "title", maxLength: 96 }
       },
 
-      {
-        name: "mainImage",
-        title: "Main Image",
-        type: "image",
-        options: { hotspot: true },
-       
-      },
 
       {
         //Here is the input that i created for Images array inside my Sanity studio
@@ -33,14 +26,7 @@ const page = {
         
       },
       
-      {
-        name: "content",
-        title: "Content",
-        type: "array",
-        of: [
-          { type: "block" }
-        ]
-      }
+     
     ]
   }
   

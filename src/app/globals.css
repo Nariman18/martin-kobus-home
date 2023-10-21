@@ -36,7 +36,7 @@ html, body {
   
   
     .link-item-white {
-      @apply relative cursor-pointer;
+      @apply relative cursor-pointer inline-block;
     }
   
     .link-item-white::before {
@@ -55,7 +55,27 @@ html, body {
       transform: scaleX(1);
     }
 
-  
     
+
+  .custom-link {
+    display: inline-block;
+    width: auto;
+  }
+
+  .hidden-header {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+  }
+    
+  .mapboxgl-control-container {
+    display: none;
+  }
+
+  .no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
   
   }

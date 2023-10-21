@@ -1,5 +1,9 @@
-function page() {
-  return <div>page</div>;
-}
+import ProjectComponent from "../components/ProjectComponent";
 
-export default page;
+export default function Press() {
+  return (
+    <div>
+      <ProjectComponent />
+    </div>
+  );
+}
