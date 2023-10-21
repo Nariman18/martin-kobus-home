@@ -7,7 +7,7 @@ export default async function sitemap() {
     const pages = await getPages()
     const pagesUrls = pages?.map((page) =>{
         return {
-            url:`${baseUrl}/pages/${page.slug}`,
+            url:`${baseUrl}pages/${page.slug}`,
             lastModified: new Date()
         }
 }) ?? []
@@ -15,7 +15,7 @@ export default async function sitemap() {
     const projects = await getProjects()
     const projectsUrls = projects.map((project) => {
         return {
-            url: `${baseUrl}/projects/${project.slug}`,
+            url: `${baseUrl}projects/${project.slug}`,
             lastModified: new Date()
         }
     })
