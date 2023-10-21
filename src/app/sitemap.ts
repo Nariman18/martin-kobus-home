@@ -8,7 +8,9 @@ export default async function sitemap() {
     const pagesUrls = pages?.map((page) =>{
         return {
             url:`${baseUrl}pages/${page.slug}`,
-            lastModified: new Date()
+            lastModified: new Date(),
+            changeFrequency: 'daily',
+            priority: 0.9
         }
 }) ?? []
 
@@ -16,25 +18,35 @@ export default async function sitemap() {
     const projectsUrls = projects.map((project) => {
         return {
             url: `${baseUrl}projects/${project.slug}`,
-            lastModified: new Date()
+            lastModified: new Date(),
+            changeFrequency: 'daily',
+            priority: 0.9
         }
     })
     return [
         {
             url: baseUrl,
             lastModified: new Date(),
+            changeFrequency: 'daily',
+            priority: 0.9
         },
         {
             url: `${baseUrl}About`,
-            lastModified: new Date()
+            lastModified: new Date(),
+            changeFrequency: 'daily',
+            priority: 0.9
         },
         {
             url: `${baseUrl}Contact`,
-            lastModified: new Date()
+            lastModified: new Date(),
+            changeFrequency: 'daily',
+            priority: 0.9
         },
         {
             url: `${baseUrl}Press`,
-            lastModified: new Date()
+            lastModified: new Date(),
+            changeFrequency: 'daily',
+            priority: 0.9
         },
         ...pagesUrls,
         ...projectsUrls
