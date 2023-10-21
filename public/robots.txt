@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: 
-Sitemap: https://www.martinkobushome.com/sitemap.xml
