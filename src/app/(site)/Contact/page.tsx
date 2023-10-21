@@ -49,14 +49,17 @@ function contactPage() {
 
           <div className="mt-8">
             <div className="flex items-center space-x-1 mt-1">
-              <div className="relative xl:w-[25px] xl:h-[25px] lg:w-[25px] lg:h-[25px] md:w-[20px] md:h-[20px] w-[25px] h-[25px]">
+              <Link
+                href="https://www.instagram.com/kobus_interiors/?hl=en#"
+                className="relative xl:w-[25px] xl:h-[25px] lg:w-[25px] lg:h-[25px] md:w-[20px] md:h-[20px] w-[25px] h-[25px]"
+              >
                 <Image
                   src="/logo_instagram.svg"
                   alt="Instagram Icon"
                   fill={true}
                   className="object-contain"
                 />
-              </div>
+              </Link>
 
               <Link
                 href="https://www.instagram.com/kobus_interiors/?hl=en#"
