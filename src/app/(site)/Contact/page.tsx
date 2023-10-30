@@ -43,7 +43,7 @@ function contactPage() {
             </p>
 
             <p className="mt-5 w-[170px] font-openSans text-[14px] font-[300] leading-6">
-              Phone: (415) 331-3755 Fax: (415) 331 4541
+              Phone: (415) 331-3755 Fax: (415) 331-4541
             </p>
           </div>
 
