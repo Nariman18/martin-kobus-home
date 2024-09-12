@@ -1,26 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Oswald:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Oswald:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-   
 }
-
-
-
 
 @layer components {
   .link-item {
     @apply relative cursor-pointer inline-block;
   }
-  
+
   .link-item::before {
     @apply absolute bg-black;
-    content: '';
+    content: "";
     bottom: -2px;
     left: 0;
     width: 100%;
@@ -29,33 +26,30 @@ html, body {
     transform-origin: left;
     transition: transform 0.3s ease;
   }
-  
+
   .link-item:hover::before {
     transform: scaleX(1);
   }
-  
-  
-    .link-item-white {
-      @apply relative cursor-pointer inline-block;
-    }
-  
-    .link-item-white::before {
-      @apply absolute bg-white;
-      content: '';
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 0.5px;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-  
-    .link-item-white:hover::before {
-      transform: scaleX(1);
-    }
 
-    
+  .link-item-white {
+    @apply relative cursor-pointer inline-block;
+  }
+
+  .link-item-white::before {
+    @apply absolute bg-white;
+    content: "";
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 0.5px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .link-item-white:hover::before {
+    transform: scaleX(1);
+  }
 
   .custom-link {
     display: inline-block;
@@ -66,7 +60,7 @@ html, body {
     transform: translateY(-100%);
     transition: transform 0.5s ease-in-out;
   }
-    
+
   .mapboxgl-control-container {
     display: none;
   }
@@ -77,5 +71,4 @@ html, body {
     width: 100%;
     top: 0;
   }
-  
-  }
+}
