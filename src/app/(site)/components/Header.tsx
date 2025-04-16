@@ -174,8 +174,8 @@ function Header() {
             transition={{ duration: 0.3 }}
           >
             {activeTab === "work" && (
-              <div className="">
-                <div className="">
+              <div>
+                <div>
                   <div
                     onClick={closeAllPanels}
                     className="absolute top-[130px] left-[390px]"

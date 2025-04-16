@@ -1,5 +1,4 @@
 import { getProject } from "../../../../../sanity/sanity-utils";
-import { Project } from "../../../../../types/Project";
 import CustomScrolling from "../../components/CustomScrolling";
 
 type Props = {

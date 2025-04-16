@@ -1,13 +1,16 @@
-import createImageUrlBuilder from '@sanity/image-url'
-import type { Image } from 'sanity'
+import type { Image } from "sanity";
 
-import { dataset, projectId } from '../env'
+import { dataset, projectId } from "../env";
+import imageUrlBuilder from "@sanity/image-url";
+import { createClient } from "next-sanity";
 
-const imageBuilder = createImageUrlBuilder({
-  projectId: projectId || '',
-  dataset: dataset || '',
-})
+const imageBuilder = createClient({
+  projectId: projectId || "",
+  dataset: dataset || "",
+});
 
-export const urlForImage = (source: Image) => {
-  return imageBuilder?.image(source).auto('format').fit('max')
+const builder = imageUrlBuilder(imageBuilder);
+
+export function urlFor(source: any) {
+  return builder.image(source).url();
 }

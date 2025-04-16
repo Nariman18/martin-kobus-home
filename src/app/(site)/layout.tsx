@@ -3,6 +3,7 @@ import "../globals.css";
 import Header from "./components/Header";
 import Head from "next/head";
 import type { Metadata } from "next";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Martin Kobus Home",
@@ -21,8 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/Logo-Grey-fill.jpg" />
       <body>
-        <Header />
-        <main id="bodyPage">{children}</main>
+        <Providers>
+          <Header />
+          <main id="bodyPage">{children}</main>
+        </Providers>
       </body>
     </html>
   );

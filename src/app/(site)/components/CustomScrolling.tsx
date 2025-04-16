@@ -15,7 +15,7 @@ const CustomScrolling = ({ images, slug }: ScrollingProps) => {
   const totalSections = images.length;
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.pageYOffset);
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [slug]);
