@@ -39,9 +39,12 @@ const AboutComponent = ({
 
       <div className="lg:ml-1">
         <div className="relative items-center">
-          <div className="text-black min-[1537px]:w-[630px] xl:w-[630px] lg:w-[450px] w-full text-[14px] 2xl:px-2 xl:px-2 lg:px-5 px-5 lg:pt-0 md:pt-10 pt-6 font-openSans font-[300] lg:mt-[50px] mt-0">
-            <PortableText value={aboutDescription} />
-          </div>
+          {aboutDescription && aboutDescription.length > 0 && (
+            <div className="text-black min-[1537px]:w-[630px] xl:w-[630px] lg:w-[450px] w-full text-[14px] 2xl:px-2 xl:px-2 lg:px-5 px-5 lg:pt-0 md:pt-10 pt-6 font-openSans font-[300] lg:mt-[50px] mt-0">
+              <PortableText value={aboutDescription} />
+            </div>
+          )}
+
           <div className="flex xl:justify-normal justify-between xl:pl-2 pl-5 xl:pr-2 pr-5 xl:p-0 lg:p-3 p-5 xl:space-x-10 lg:space-x-3 space-x-0 xl:mt-5 lg:mt-0 md:mt-20 mt-12">
             <div className="relative flex items-center 2xl:w-[265px] xl:w-[265px] lg:w-[200px] md:w-[340px] w-[170px] 2xl:h-[290px] xl:h-[290px] lg:h-[290px] md:h-[370px] h-[185px] lg:mt-3 sm:mr-0 mr-10">
               {leftImage && (

@@ -105,11 +105,13 @@ function ContactClient({
             </Link>
           </div>
         </div>
-        <div className="flex flex-col mt-8">
-          <div className="font-openSans font-[300] text-[14px] md:text-sm text-sm">
-            <PortableText value={footerNote} />
+        {footerNote && footerNote.length > 0 && (
+          <div className="flex flex-col mt-8">
+            <div className="font-openSans font-[300] text-[14px] md:text-sm text-sm">
+              <PortableText value={footerNote} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
