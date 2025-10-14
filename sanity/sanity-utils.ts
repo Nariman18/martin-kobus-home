@@ -76,16 +76,14 @@ export async function getPage(slug: string): Promise<Page> {
     groq`*[_type == 'page' && slug.current == $slug][0]{
                 _id,
                 _createdAt, 
-                "images": images[].asset->url,
+                "images": images[].asset->{
+                  "url": url + "?w=1200&fit=max&auto=format&q=80"
+                },
                 title,
                 "slug": slug.current,
             }`,
     { slug }
   );
-}
-
-{
-  /*Contact Page*/
 }
 
 export async function getContact(): Promise<Contact> {

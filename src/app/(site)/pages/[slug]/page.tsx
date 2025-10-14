@@ -9,6 +9,14 @@ export default async function Page({ params }: Props) {
   const slug = params.slug;
   const page = await getPage(slug);
 
+  if (!page || !page.images || page.images.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Page not or images found
+      </div>
+    );
+  }
+
   return (
     <div>
       <CustomScrolling images={page.images} slug={page.slug} />
