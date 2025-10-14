@@ -44,16 +44,16 @@ const CustomScrolling = ({ images, slug }: ScrollingProps) => {
     };
   }, [handleScroll]);
 
-  const getOptimizedImageUrl = useCallback(
-    (imageUrl: string) => {
-      const width = windowHeight > 800 ? 1200 : 800;
-      if (imageUrl.includes("?")) {
-        return `${imageUrl}&w=${width}&fit=max&auto=format&q=80`;
-      }
-      return `${imageUrl}?w=${width}&fit=max&auto=format&q=80`;
-    },
-    [windowHeight]
-  );
+  const getOptimizedImageUrl = (imageUrl: string) => {
+    const width = windowHeight > 800 ? 1200 : 800;
+    const format = "webp"; // Force WebP format
+    const quality = 75; // Lower quality for WebP since it's more efficient
+
+    if (imageUrl.includes("?")) {
+      return `${imageUrl}&w=${width}&fit=max&format=${format}&q=${quality}`;
+    }
+    return `${imageUrl}?w=${width}&fit=max&format=${format}&q=${quality}`;
+  };
 
   // Sequential scroll effect - each image waits for previous to complete
   const getImageTransform = useCallback(
