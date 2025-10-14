@@ -4,5 +4,7 @@ export type Project = {
   name: string;
   slug: string;
   image: string;
-  images: string[];
+  images: {
+    url: string;
+  }[];
 };

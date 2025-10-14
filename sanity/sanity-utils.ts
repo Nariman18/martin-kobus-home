@@ -39,7 +39,9 @@ export async function getProject(slug: string): Promise<Project> {
                 _createdAt,
                 name,
                 "slug": slug.current,
-                "images": images[].asset->url,
+                "images": images[].asset->{
+                  "url": url + "?w=1200&fit=max&auto=format&q=80"
+                },
             }`,
     { slug }
   );
