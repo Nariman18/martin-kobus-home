@@ -63,7 +63,7 @@ export async function getPages(): Promise<Page[]> {
   });
 
   return client.fetch(
-    groq`*[_type == 'page']{
+    groq`*[_type == 'page'] | order(_createdAt desc) {
                 _id,
                 _createdAt,
                 title,

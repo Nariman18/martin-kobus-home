@@ -26,11 +26,8 @@ function Header() {
   useEffect(() => {
     const fetchData = async () => {
       const pagesData = await getPages();
-      const sortedPagesData = pagesData.sort(
-        (b, a) =>
-          new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
-      );
-      setPages(sortedPagesData);
+
+      setPages(pagesData);
     };
 
     fetchData();
