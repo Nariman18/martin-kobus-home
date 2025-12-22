@@ -11,8 +11,8 @@ export default async function Page({ params }: Props) {
 
   if (!page || !page.images || page.images.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        Page not or images found
+      <div className="min-h-screen flex text-red-500 items-center justify-center text-lg">
+        Page or images not found
       </div>
     );
   }

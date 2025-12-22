@@ -11,7 +11,7 @@ export default async function Project({ params }: Props) {
 
   return (
     <div>
-      {project && (
+      {project?.images && project.images.length > 0 && (
         <CustomScrolling images={project.images} slug={project.slug} />
       )}
     </div>

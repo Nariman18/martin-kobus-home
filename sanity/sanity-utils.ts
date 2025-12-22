@@ -21,7 +21,9 @@ export async function getProjects(): Promise<Project[]> {
                 _createdAt,
                 name,
                 "slug": slug.current,
-                "image": image.asset->url,
+                coverImage{
+                  asset->
+                }
             }`
   );
 }
