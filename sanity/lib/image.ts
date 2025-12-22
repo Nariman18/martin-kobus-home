@@ -12,5 +12,5 @@ const imageBuilder = createClient({
 const builder = imageUrlBuilder(imageBuilder);
 
 export function urlFor(source: any) {
-  return builder.image(source).url();
+  return builder.image(source).auto("format").fit("max");
 }

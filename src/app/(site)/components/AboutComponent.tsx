@@ -28,7 +28,7 @@ const AboutComponent = ({
       <div className="relative min-[1537px]:w-[720px] min-[1537px]:h-screen 2xl:w-[550px] xl:w-[570px] lg:w-[800px] md:w-[768px] w-full h-screen 2xl:h-screen xl:h-screen lg:h-[750px] md:h-[1025px] sm:h-[900px] 2xl:mt-0 xl:mt-0 mt-0">
         {mainImage && (
           <Image
-            src={urlFor(mainImage)}
+            src={urlFor(mainImage).width(1600).quality(80).url()}
             alt="aboutImage"
             fill={true}
             className="xl:object-cover lg:object-contain object-cover lg:object-center object-left xl:pl-0 lg:pl-3 pl-0"
@@ -49,7 +49,7 @@ const AboutComponent = ({
             <div className="relative flex items-center 2xl:w-[265px] xl:w-[265px] lg:w-[200px] md:w-[340px] w-[170px] 2xl:h-[290px] xl:h-[290px] lg:h-[290px] md:h-[370px] h-[185px] lg:mt-3 sm:mr-0 mr-10">
               {leftImage && (
                 <Image
-                  src={urlFor(leftImage)}
+                  src={urlFor(leftImage).width(1600).quality(80).url()}
                   alt="aboutImage2"
                   fill={true}
                   className="object-contain"
@@ -64,7 +64,7 @@ const AboutComponent = ({
             <div className="relative flex flex-col items-center 2xl:w-[265px] xl:w-[265px] lg:w-[200px] md:w-[340px] w-[170px] 2xl:h-[290px] xl:h-[290px] lg:h-[290px] md:h-[370px] h-[185px] lg:mt-3 sm:ml-0 ml-10">
               {rightImage && (
                 <Image
-                  src={urlFor(rightImage)}
+                  src={urlFor(rightImage).width(1600).quality(80).url()}
                   alt="aboutImage2"
                   fill={true}
                   className="object-contain"

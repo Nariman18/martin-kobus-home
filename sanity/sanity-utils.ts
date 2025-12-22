@@ -39,9 +39,9 @@ export async function getProject(slug: string): Promise<Project> {
                 _createdAt,
                 name,
                 "slug": slug.current,
-                "images": images[].asset->{
-                  "url": url + "?w=1200&fit=max&auto=format&q=80"
-                },
+               images[]{
+                asset->
+              }
             }`,
     { slug }
   );
@@ -78,8 +78,8 @@ export async function getPage(slug: string): Promise<Page> {
     groq`*[_type == 'page' && slug.current == $slug][0]{
                 _id,
                 _createdAt, 
-                "images": images[].asset->{
-                  "url": url + "?w=1200&fit=max&auto=format&q=80"
+                images[]{
+                  asset->
                 },
                 title,
                 "slug": slug.current,

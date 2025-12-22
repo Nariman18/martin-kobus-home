@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { getPage, getPages } from "../../../../sanity/sanity-utils";
 import { Page } from "../../../../types/Page";
+import { urlFor } from "../../../../sanity/lib/image";
 
 type ScrollingProps = {
-  images: string[];
+  images: { asset: any }[];
   slug: string;
 };
 
@@ -60,7 +61,7 @@ const CustomScrolling = ({ images, slug }: ScrollingProps) => {
         >
           <div className="w-full h-screen">
             <Image
-              src={img}
+              src={urlFor(img.asset).width(1600).quality(80).url()}
               alt="Images"
               fill={true}
               className="object-contain"

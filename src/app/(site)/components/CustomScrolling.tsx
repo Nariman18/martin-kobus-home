@@ -1,13 +1,10 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState, useCallback, useRef } from "react";
-
-type ImageType = {
-  url: string;
-};
+import { urlFor } from "../../../../sanity/lib/image";
 
 type ScrollingProps = {
-  images: ImageType[];
+  images: { asset: any }[];
   slug: string;
 };
 
@@ -102,7 +99,7 @@ const CustomScrolling = ({ images, slug }: ScrollingProps) => {
         >
           <div className="w-full h-full relative">
             <Image
-              src={image.url}
+              src={urlFor(image.asset).width(1600).quality(80).url()}
               alt={`${slug} image ${index + 1}`}
               fill
               sizes="100vw"

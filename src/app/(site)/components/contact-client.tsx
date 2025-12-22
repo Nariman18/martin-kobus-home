@@ -35,7 +35,7 @@ function ContactClient({
       <div className="absolute w-[80px] h-[80px] xl:hidden lg:hidden md:top-[150px] top-[100px] md:left-[330px] sm:left-[46px] left-[15px] justify-center items-center">
         {logoImage && (
           <Image
-            src={urlFor(logoImage)}
+            src={urlFor(logoImage).width(1600).quality(80).url()}
             alt="Logo Image"
             className="object-contain"
             fill={true}
@@ -52,7 +52,7 @@ function ContactClient({
         <div className="relative xl:w-[80px] xl:h-[80px] lg:w-[80px] lg:h-[80px]">
           {logoImage && (
             <Image
-              src={urlFor(logoImage)}
+              src={urlFor(logoImage).width(1600).quality(80).url()}
               alt="Logo Image"
               className="object-contain"
               fill={true}
@@ -87,7 +87,7 @@ function ContactClient({
             >
               {socialLogo && (
                 <Image
-                  src={urlFor(socialLogo)}
+                  src={urlFor(socialLogo).width(1600).quality(80).url()}
                   alt="Instagram Icon"
                   fill
                   className="object-contain"
