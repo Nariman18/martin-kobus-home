@@ -61,7 +61,7 @@ const CustomScrolling = ({ images, slug }: ScrollingProps) => {
         >
           <div className="w-full h-screen">
             <Image
-              src={urlFor(img.asset).width(1600).quality(80).url()}
+              src={urlFor(img).width(1600).quality(80).url()}
               alt="Images"
               fill={true}
               className="object-contain"
