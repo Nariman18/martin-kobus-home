@@ -58,21 +58,21 @@ const CustomScrolling = ({ images, slug }: ScrollingProps) => {
   // Sequential scroll effect - each image waits for previous to complete
   const getImageTransform = useCallback(
     (index: number) => {
-      if (windowHeight === 0) return "translate3d(0, 0, 0)";
+      if (windowHeight === 0) return "translate3d(0,0,0)";
 
       const sectionHeight = windowHeight;
-      const triggerPoint = index * sectionHeight;
+      const start = index * sectionHeight;
+      const end = start + sectionHeight;
 
-      // Current image stays fixed until we reach its section
-      if (scrollY < triggerPoint) {
-        return "translate3d(0, 0, 0)";
+      if (scrollY < start) {
+        return "translate3d(0,0,0)";
       }
 
-      // When we scroll past this image's trigger point, it moves up
-      const progress = (scrollY - triggerPoint) / sectionHeight;
+      if (scrollY > end) {
+        return `translate3d(0, -${sectionHeight}px, 0)`;
+      }
 
-      // Only start moving the current image when we're in its section
-      // This creates the sequential effect
+      const progress = (scrollY - start) / sectionHeight;
       const offset = -progress * sectionHeight;
 
       return `translate3d(0, ${offset}px, 0)`;
@@ -92,23 +92,22 @@ const CustomScrolling = ({ images, slug }: ScrollingProps) => {
     <div style={{ height: `${totalSections * 100}vh` }}>
       {images.map((image, index) => (
         <div
-          key={index}
+          key={`${slug}-${index}`}
           className="fixed top-0 left-0 w-full h-screen bg-white"
           style={{
-            zIndex: totalSections - index,
+            zIndex: images.length + 1 - index,
             transform: getImageTransform(index),
             willChange: "transform",
           }}
         >
           <div className="w-full h-full relative">
             <Image
-              src={getOptimizedImageUrl(image.url)}
+              src={image.url}
               alt={`${slug} image ${index + 1}`}
               fill
-              className="object-contain"
-              priority={index === 0}
               sizes="100vw"
-              quality={80}
+              priority={index === 0}
+              className="object-contain"
             />
           </div>
         </div>
