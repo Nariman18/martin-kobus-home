@@ -3,7 +3,7 @@ export type Project = {
   _createdAt: Date;
   name: string;
   slug: string;
-  coverImage?: {
+  image?: {
     asset: {
       _id: string;
       url: string;

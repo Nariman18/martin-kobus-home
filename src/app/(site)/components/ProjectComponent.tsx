@@ -28,10 +28,10 @@ function ProjectComponent() {
       <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {projects.map((project) => (
           <Link key={project._id} href={`projects/${project.slug}`}>
-            {project.coverImage?.asset && (
+            {project.image?.asset && (
               <div className="relative w-[320px] h-[400px]">
                 <Image
-                  src={urlFor(project.coverImage.asset)
+                  src={urlFor(project.image?.asset)
                     .width(800)
                     .quality(80)
                     .url()}

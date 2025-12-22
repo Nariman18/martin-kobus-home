@@ -19,7 +19,9 @@ export default async function Page({ params }: Props) {
 
   return (
     <div>
-      <CustomScrolling images={page.images} slug={page.slug} />
+      {page.images && page.images.length > 0 && (
+        <CustomScrolling images={page.images} slug={page.slug} />
+      )}
     </div>
   );
 }
