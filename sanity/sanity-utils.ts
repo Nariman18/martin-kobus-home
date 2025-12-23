@@ -13,7 +13,7 @@ export async function getProjects(): Promise<Project[]> {
     projectId,
     dataset,
     apiVersion,
-    useCdn: false,
+    useCdn: true,
   });
 
   return client.fetch(
@@ -34,7 +34,7 @@ export async function getProject(slug: string): Promise<Project> {
     projectId,
     dataset,
     apiVersion,
-    useCdn: false,
+    useCdn: true,
   });
 
   return client.fetch(
@@ -59,7 +59,7 @@ export async function getPages(): Promise<Page[]> {
     projectId,
     dataset,
     apiVersion,
-    useCdn: false,
+    useCdn: true,
   });
 
   return client.fetch(
@@ -77,7 +77,7 @@ export async function getPage(slug: string): Promise<Page> {
     projectId,
     dataset,
     apiVersion,
-    useCdn: false,
+    useCdn: true,
   });
 
   return client.fetch(
@@ -99,7 +99,7 @@ export async function getContact(): Promise<Contact> {
     projectId,
     dataset,
     apiVersion,
-    useCdn: false,
+    useCdn: true,
   });
 
   return client.fetch(
@@ -127,7 +127,7 @@ export async function getAbout(): Promise<About> {
     projectId,
     dataset,
     apiVersion,
-    useCdn: false,
+    useCdn: true,
   });
 
   return client.fetch(
