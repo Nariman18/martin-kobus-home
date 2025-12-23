@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 import { getPage } from "../../../../../sanity/sanity-utils";
 import CustomScrolling from "../../components/CustomScrolling";
