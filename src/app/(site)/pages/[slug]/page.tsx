@@ -1,13 +1,10 @@
+export const dynamic = "force-dynamic";
+
 import { getPage } from "../../../../../sanity/sanity-utils";
 import CustomScrolling from "../../components/CustomScrolling";
 
-type Props = {
-  params: { slug: string };
-};
-
-export default async function Page({ params }: Props) {
-  const slug = params.slug;
-  const page = await getPage(slug);
+export default async function Page({ params }: { params: { slug: string } }) {
+  const page = await getPage(params.slug);
 
   if (!page || !page.images || page.images.length === 0) {
     return (
@@ -17,11 +14,5 @@ export default async function Page({ params }: Props) {
     );
   }
 
-  return (
-    <div>
-      {page.images && page.images.length > 0 && (
-        <CustomScrolling images={page.images} slug={page.slug} />
-      )}
-    </div>
-  );
+  return <CustomScrolling images={page.images} slug={page.slug} />;
 }
