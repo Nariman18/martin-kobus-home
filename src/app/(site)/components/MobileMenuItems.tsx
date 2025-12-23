@@ -18,11 +18,8 @@ const MobileMenuItems: React.FC<{
   useEffect(() => {
     const fetchData = async () => {
       const pagesData = await getPages();
-      const sortedPagesData = pagesData.sort(
-        (b, a) =>
-          new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
-      );
-      setMobPages(sortedPagesData);
+
+      setMobPages(pagesData);
     };
 
     fetchData();
