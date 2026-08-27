@@ -5,7 +5,8 @@ export default function Home() {
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <video
-        src="https://storage.googleapis.com/martin-website/Ownerbailache4kweboptimized.mp4"
+        //https://storage.googleapis.com/martin-website/Ownerbailache4kweboptimized.mp4
+        src="/OwnerBailache4webcompressed.mp4"
         autoPlay
         loop
         muted
